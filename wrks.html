@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Responsive Form App</title>
+
+<style>
+    body {
+        margin: 0;
+        min-height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background: #e0e7ff;
+        font-family: Arial, sans-serif;
+    }
+
+    .card {
+        background: rgb(252, 207, 207);
+        padding: 20px;
+        width: 35%;
+        min-width: 280px;
+        max-width: 420px;
+        border-radius: 8px;
+        text-align: center;
+    }
+
+    input, select {
+        width: 90%;
+        padding: 8px;
+        margin: 8px 0;
+    }
+
+    button {
+        padding: 8px 15px;
+        border: none;
+        background: #4338ca;
+        color: white;
+        cursor: pointer;
+        border-radius: 4px;
+        margin-top: 10px;
+    }
+
+    .output {
+        margin-top: 15px;
+        font-weight: bold;
+    }
+
+</style>
+</head>
+
+<body>
+
+<div class="card">
+    <h3>User Height</h3>
+
+    <input type="text" id="name" placeholder="Enter name">
+
+    <select id="gender">
+        <option value="">Select Gender</option>
+        <option value="Male">Male</option>
+        <option value="Female">Female</option>
+        <option value="Other">Other</option>
+    </select>
+
+    <input type="number" id="height" placeholder="Height in feet">
+
+    <button onclick="process()">Submit</button>
+
+    <div class="output" id="result"></div>
+</div>
+
+<script>
+    function process() {
+        let name = document.getElementById("name").value;
+        let gender = document.getElementById("gender").value;
+        let heightFeet = document.getElementById("height").value;
+        let result = document.getElementById("result");
+
+        if (name === "" || gender === "" || heightFeet === "") {
+            result.style.color = "red";
+            result.innerHTML = "Please fill all details!";
+            return;
+        }
+
+        let heightCm = heightFeet * 30.48;
+
+        result.style.color = "green";
+        result.innerHTML =
+            "Hello " + name + " (" + gender + ")<br>" +
+            "Height: " + heightFeet + " ft = " + heightCm.toFixed(2) + " cm";
+    }
+</script>
+
+</body>
+</html>
